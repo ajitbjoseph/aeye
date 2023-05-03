@@ -11,13 +11,13 @@ from http import server
 
 PAGE="""\
 <html>
-<head>
-<title>AEYE - Driver Camera</title>
-</head>
-<body>
-<center><h1>AEYE - Driver's View</h1></center>
-<center><img src="stream.mjpg" width="640" height="480"></center>
-</body>
+    <head>
+        <title>AEYE - Driver Camera</title>
+    </head>
+    <body>
+        <center><h1>AEYE - Driver's View</h1></center>
+        <center><img src="stream.mjpg" width="640" height="480"></center>
+    </body>
 </html>
 """
 
