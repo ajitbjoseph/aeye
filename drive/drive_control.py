@@ -94,6 +94,9 @@ try:
 			else:
 				direction = direction + 100
 
+		if key == " ":
+			speed = 0
+		
 		else:
 			print("Other key")
 			#speed = 0
