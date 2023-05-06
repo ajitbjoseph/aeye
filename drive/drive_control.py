@@ -48,6 +48,11 @@ def set_motor_speed(motor, speed):
 	motor["pwm"].ChangeDutyCycle(rotation)
 
 
+def drive(direction, speed):
+	set_motor_speed({"in1_pin": front_in1, "in2_pin": front_in2, "pwm": front_pwm}, direction)
+	set_motor_speed({"in1_pin": rear_in1, "in2_pin": rear_in2, "pwm": rear_pwm}, speed)
+
+
 # Run the motors forward and backwards
 try:
 	speed = 0
@@ -57,40 +62,49 @@ try:
 
 		if key == keys.UP:
 			print("Forward")
-			if speed  == 95:
+			if speed == 0:
+				drive(direction, 100)
+				speed = 60
+
+			if speed  == 100:
 				print("Already moving forward")
 			else:
-				speed = speed + 95
+				speed = speed + 10
 
 		if key == keys.DOWN:
 			print("Reverse")
-			if speed == -95:
+			if speed == 0:
+					drive(direction, -100)
+					speed = -60 
+
+			if speed == -100:
 				print("Already moving backwards")
 			else:
-				speed = speed - 95
+				speed = speed - 10
 
 		if key == keys.LEFT:
-                        if direction == -95:
+                        if direction == -100:
                                 print("Already turning left")
                         else:
-                                direction = direction - 95
+                                direction = direction - 100
 
 		if key == keys.RIGHT:
-			if direction == 95:
+			if direction == 100:
 				print("Already turning right")
 			else:
-				direction = direction + 95
+				direction = direction + 100
 
 		else:
 			print("Other key")
 			#speed = 0
 			#direction = 0
 
-		set_motor_speed({"in1_pin": front_in1, "in2_pin": front_in2, "pwm": front_pwm}, direction)
-		set_motor_speed({"in1_pin": rear_in1, "in2_pin": rear_in2, "pwm": rear_pwm}, speed)
+		# Drive the vehicle
+		drive(direction, speed)
 		#time.sleep(1)
 
 		print("direction " + str(direction))
+
 
 except KeyboardInterrupt:
 	front_pwm.stop()
