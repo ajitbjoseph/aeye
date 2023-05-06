@@ -63,7 +63,7 @@ try:
 		if key == keys.UP:
 			print("Forward")
 			if speed == 0:
-				drive(direction, 100)
+				drive(0, 100)
 				speed = 60
 
 			if speed  == 100:
@@ -74,7 +74,7 @@ try:
 		if key == keys.DOWN:
 			print("Reverse")
 			if speed == 0:
-					drive(direction, -100)
+					drive(0, -100)
 					speed = -60 
 
 			if speed == -100:
@@ -95,8 +95,14 @@ try:
 				direction = direction + 100
 
 		if key == " ":
+			print("Emergency brakes applied")
 			speed = 0
 		
+		if key == 'c' or key == 'C'
+			print("Say cheese!")
+
+
+
 		else:
 			print("Other key")
 			#speed = 0
@@ -106,7 +112,7 @@ try:
 		drive(direction, speed)
 		#time.sleep(1)
 
-		print("direction " + str(direction))
+		print("direction: " + str(direction) + "; speed: " + str(speed))
 
 
 except KeyboardInterrupt:
